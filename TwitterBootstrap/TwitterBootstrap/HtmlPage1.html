@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <script src="Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <title></title>
+  <style>
+    .cursor
+    {
+      width:5px;
+    }
+
+    body{
+      background-color:black;
+    }
+    body *
+    {
+      color: green;
+      font-family: monospace;
+    }
+     
+  </style>
+  <script type="text/javascript">
+    $(function () {
+      function CursorInit() {
+        
+        setInterval(function () {
+          $('.cursor').css('color', 'black');
+          setTimeout(function () {
+            $('.cursor').css('color', 'green');
+          },500);
+        }, 1000); 
+      }
+      CursorInit();
+    });
+  </script>
+</head>
+<body>
+  <div class="cursor">&#9602;</div>
+
+</body>
+</html>
