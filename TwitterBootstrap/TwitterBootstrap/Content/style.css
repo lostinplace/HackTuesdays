@@ -4,6 +4,11 @@
   color: #00ff90;
 }
 
+.cursor{
+  display:inline-block;
+  margin-left:-15px;
+}
+
 #txtcmd {
   width: 1em;
   background: transparent;
