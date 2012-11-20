@@ -4,11 +4,18 @@
   color: #00ff90;
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 #txtcmd {
   width: 1em;
   background: transparent;
   border: none;
   color: #00ff90;
+  font-family: monospace;
 }
 
 marquee {
