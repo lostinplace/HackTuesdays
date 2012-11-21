@@ -1,6 +1,13 @@
 ﻿$(function () {
-  $("#txtcmd").val("").focus().on("keyup", function () {
-    $(".activeline").text($(this).val());
+  $("#txtcmd").val("").focus().on("keyup", function (e) {
+    if (e.keyCode == 13 || (e.keyCode >=37 && e.keyCode <= 40)) {
+      var cmd = $(this).val();
+      $(".cmdlist").append("<li>" + cmd + "</li>");
+      $(this).val("");
+      $(".activeline").html("");
+    } else {
+      $(".activeline").html($(this).val());
+    }
     //$(this).css("width", (($(this).val().length + 2) * .6) + "em");
   }).on("blur", function () {
     var val = $(this).val();
