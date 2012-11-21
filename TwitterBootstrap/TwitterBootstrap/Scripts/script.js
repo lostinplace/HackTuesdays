@@ -6,7 +6,7 @@
       $(this).val("");
       $(".activeline").html("");
     } else {
-      $(".activeline").html($(this).val());
+      $(".activeline").html($(this).val().replace(" ", "&nbsp;"));
     }
   }).on("blur", function () {
     var val = $(this).val();
