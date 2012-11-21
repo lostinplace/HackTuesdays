@@ -2,17 +2,21 @@
   $("#txtcmd").val("").focus().on("keyup", function (e) {
     if (e.keyCode == 13 || (e.keyCode >=37 && e.keyCode <= 40)) {
       var cmd = $(this).val();
-      $(".cmdlist").append("<li>" + ("<span>&gt; " + cmd + "</span>") + "<p>no</p>" + "</li>");
+      $(".cmdlist").append("<li>" + ("<span>31337&gt; " + cmd + "</span>") + "<p>no</p>" + "</li>");
       $(this).val("");
       $(".activeline").html("");
     } else {
-      $(".activeline").html($(this).val());
+      $(".activeline").html($(this).val().replace(" ", "&nbsp;"));
     }
-    //$(this).css("width", (($(this).val().length + 2) * .6) + "em");
   }).on("blur", function () {
     var val = $(this).val();
     $(this).focus().val(val);
   });
+
+  $("body").on("click", function () {
+    $("#txtcmd").focus();
+  });
+
   var CursorInit = (function () {
     setInterval(function () {
       $('.cursor').css('color', '#222');
