@@ -11,7 +11,7 @@ ul, li {
 }
 .cursor{
   display:inline-block;
-  margin-left:-15px;
+  margin-left:-7px;
 }
 
 
@@ -21,6 +21,8 @@ ul, li {
   border: none;
   color: #00ff90;
   font-family: monospace;
+  position: absolute;
+  top: -4em;
 }
 
 marquee {
