@@ -2,7 +2,7 @@
   $("#txtcmd").val("").focus().on("keyup", function (e) {
     if (e.keyCode == 13 || (e.keyCode >=37 && e.keyCode <= 40)) {
       var cmd = $(this).val();
-      $(".cmdlist").append("<li>" + cmd + "</li>");
+      $(".cmdlist").append("<li>" + ("<span>&gt; " + cmd + "</span>") + "<p>no</p>" + "</li>");
       $(this).val("");
       $(".activeline").html("");
     } else {
