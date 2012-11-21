@@ -10,6 +10,15 @@ ul, li {
   list-style-type: none;
 }
 
+.man {
+  float: right;
+  margin: 2em;
+  border: solid 1em #00ff90;
+  padding: 1em;
+  text-align: center;
+  cursor: default;
+}
+
 .cmdlist p {
   margin-top: 0;
 }
