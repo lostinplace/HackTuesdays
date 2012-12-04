@@ -2,7 +2,9 @@
   $("#txtcmd").val("").focus().on("keyup", function (e) {
     if (e.keyCode == 13 || (e.keyCode >=37 && e.keyCode <= 40)) {
       var cmd = $(this).val();
-      $(".cmdlist").append("<li>" + ("<span>31337&gt; " + cmd + "</span>") + "<p>no</p>" + "</li>");
+      var resultTxt = ConsoleParse(cmd);
+      $(".cmdlist").append("<li>" + ("<span>" + scores[session.whoami] + "&gt; " + cmd + "</span>") + "<p>" + resultTxt + "</p>" + "</li>");
+      $('#whoami').text( session.whoami);
       $(this).val("");
       $(".activeline").html("");
     } else {
