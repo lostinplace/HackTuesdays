@@ -2,12 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title></title>
-  <script src="js/jquery.js"><!-mce:0-></script>
-  <script src="js/underscore.js"><!-mce:1-></script>
-  <script src="js/backbone.js"><!-mce:2-></script>
-
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+  <script type="text/javascript">
+  	_.templateSettings = {
+		interpolate : /\{\{(.+?)\}\}/g
+	};
+  </script>
+  <script src="js/Client.js"></script>
+  <script src="js/Clients.js"></script>
+  <script src="js/ClientView.js"></script>
 </head>
 <body>
-
+	<script id="clientPageTemplate">
+		<li>{{name}}, {{age}}</li>
+	</script>
 </body>
 </html>
