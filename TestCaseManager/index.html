@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+  <script src="icanhaz.js"></script>
+  <script type="text/javascript">
+    
+  </script>
+  <script id="logic">
+    var val;
+    $(function(){
+      var test = {
+        _id: "",
+        procedure: "",
+        result: false,
+        resultDesc: "",
+        tests: []
+      };
+
+      var TestModel = Backbone.Model.extend(test);
+
+      var TestCollection = Backbone.Collection.extend({
+        model: TestModel
+      });
+
+      var tests = [{
+        _id: "1",
+        procedure: "click OK",
+        result:true
+      }, {
+        _id: "2",
+        procedure: "close app"
+      }];
+    
+      var myTests = new TestCollection(tests);
+
+      var TestView = Backbone.View.extend({
+        
+        events: {
+          "change .proc": "procChanged"
+        },
+        procChanged :function(e){
+          this.model.set({ procedure:  e.currentTarget.value });
+        },
+        
+        initialize: function () {
+          this.model.bind('change', this.render, this);
+          this.model.bind('destroy', this.remove, this);
+        },
+        render: function () {
+          $(this.el).html(
+            ich.clientPageTemplate(this.model.toJSON())
+          );
+          return this;
+        }
+      });
+
+      var TestCollectionView = Backbone.View.extend({
+        initialize: function () {
+          var that = this;
+          this._testViews = [];
+          this.collection.each(function (test) {
+            that._testViews.push(new TestView({
+              model: test
+            }));
+          });
+        },
+        render: function () {
+          var that = this;
+          $(this.el).empty();
+          _(this._testViews).each(function (testview) {
+            $(that.el).append(testview.render().el);
+          });
+        }
+      });
+
+      
+      
+      var v = new TestCollectionView({el:$('ul'), collection:myTests});
+      v.render();
+    });
+    
+    
+    
+
+
+    //alert('done');
+
+
+  </script>
+  <script id="clientPageTemplate" type="text/html">
+    <li><span>procedure</span> <input class="proc" value= "{{procedure}}" />, <span>result</span>{{result}}</li>
+	</script>
+</head>
+<body>
+  <ul id="ihateyousomuchrightnow" >
+
+  </ul>
+	<button type="button" onclick="alert(val);"></button>
+</body>
+</html>
