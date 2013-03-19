@@ -2,10 +2,10 @@
   "duck": {
     "sx": 0,
     "sy": 0,
-    "cols": 1,
+    "cols": 4,
     "tilew": 32,
     "tileh": 32,
-    "frames": 1
+    "frames": 4
   }
 }
 

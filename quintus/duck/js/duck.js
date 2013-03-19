@@ -1,7 +1,7 @@
 (function() {
   var Q = Quintus( );
 
-  Q.include( "Sprites, Scenes, Input, 2D, Touch, UI");
+  Q.include( "Sprites, Anim, Scenes, Input, 2D, Touch, UI");
 
   Q.setup( );
 
@@ -9,9 +9,17 @@
 
   Q.touch( );
 
+  Q.animations( "duck", {
+    run_right: { frames: [0,1], rate: 1/15 },
+    run_left: { frames: [2,3], rate: 1/15 },
+    stand_right: { frames: [0], rate: 1/5 },
+    stand_left: { frames: [3], rate: 1/5 }
+  } );
+
   Q.Sprite.extend( "Duck", {
     init: function( p ) {
       this._super( p, {
+        sprite: "duck", //< it seems this must match the animations name created above
         sheet: "duck",
         x: 32,
         y: 384,
@@ -19,12 +27,22 @@
         vy: 9.8
       } );
 
-      this.add( "2d, platformerControls" );
+      this.add( "2d, platformerControls, animation" );
     },
 
     step: function( dt ) {
-      this.p.x += this.p.vx * dt;
-      this.p.y += this.p.vy * dt;
+      // augment (rather than replace) build in platformerControls velocity management
+      //this.p.x += this.p.vx * dt;
+      //this.p.y += this.p.vy * dt;
+
+      if ( this.p.vx > 0 ) {
+        this.play( "run_right" );
+      } else if ( this.p.vx < 0 ) {
+        this.play( "run_left" );
+      } else {
+        // if using platformerControls, this.p.direction is the text: right | left (rather than a number as in their example)
+        this.play( "stand_" + this.p.direction );
+      }
     }
   } );
 
@@ -34,7 +52,8 @@
       sheet: "tiles"
     } ) );
 
-    s.insert( new Q.Duck() );
+    var duck = new Q.Duck();
+    s.insert( duck );
   } );
 
   Q.load( "sprites.png, sprites.json, tiles.png, 1-1.json", function( ) {
@@ -43,5 +62,6 @@
     Q.compileSheets( "sprites.png", "sprites.json" );
 
     Q.stageScene( "1-1" );
+
   } );
 }());
