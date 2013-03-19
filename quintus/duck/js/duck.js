@@ -1,7 +1,7 @@
 (function() {
   var Q = Quintus( );
 
-  Q.include( "Sprites, Scenes, Input, 2D,Touch, UI");
+  Q.include( "Sprites, Scenes, Input, 2D, Touch, UI");
 
   Q.setup( );
 
@@ -14,10 +14,17 @@
       this._super( p, {
         sheet: "duck",
         x: 32,
-        y: 384
+        y: 384,
+        vx: 9.8,
+        vy: 9.8
       } );
 
       this.add( "2d, platformerControls" );
+    },
+
+    step: function( dt ) {
+      this.p.x += this.p.vx * dt;
+      this.p.y += this.p.vy * dt;
     }
   } );
 
