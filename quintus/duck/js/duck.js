@@ -21,7 +21,7 @@
       this._super( p, {
         sprite: "duck", //< it seems this must match the animations name created above
         sheet: "duck",
-        x: 32,
+        x: 128,
         y: 384,
         vx: 9.8,
         vy: 9.8
