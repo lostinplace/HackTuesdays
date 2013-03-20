@@ -16,13 +16,28 @@
     stand_left: { frames: [3], rate: 1/5 }
   } );
 
+  Q.Sprite.extend( "Canon", {
+    init: function( p ) {
+      this._super( p, {
+        sheet: "canon",
+        x: 256,
+        y: 320 - 16,
+        vx: -100
+      } );
+    },
+
+    step: function( dt ) {
+      this.p.x += this.p.vx * dt;
+    }
+  } );
+
   Q.Sprite.extend( "Duck", {
     init: function( p ) {
       this._super( p, {
         sprite: "duck", //< it seems this must match the animations name created above
         sheet: "duck",
         x: 128,
-        y: 384,
+        y: 400,
         vx: 9.8,
         vy: 9.8
       } );
@@ -54,6 +69,8 @@
 
     var duck = new Q.Duck();
     s.insert( duck );
+
+    s.insert( new Q.Canon( ) );
   } );
 
   Q.load( "sprites.png, sprites.json, tiles.png, 1-1.json", function( ) {

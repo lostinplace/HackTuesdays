@@ -6,6 +6,14 @@
     "tilew": 32,
     "tileh": 32,
     "frames": 4
+  },
+  "canon": {
+    "sx": 0,
+    "sy": 32,
+    "cols": 1,
+    "tilew": 32,
+    "tileh": 32,
+    "frames": 1
   }
 }
 
